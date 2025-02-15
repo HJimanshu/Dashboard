@@ -1,0 +1,700 @@
+{% load static%}
+
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Data Visualization-Dashboard</title>
+    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        .bar {
+            fill: steelblue;
+        }
+
+        .bar:hover {
+            fill: orange;
+        }
+
+        .axis-label {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .card h4 {
+            font-size: 14px !important;
+            font-weight: bold;
+        }
+    </style>
+    <link rel="apple-touch-icon" href="apple-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="{% static 'vendors/bootstrap/dist/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'vendors/font-awesome/css/font-awesome.min.css'%}">
+    <link rel="stylesheet" href="{% static 'vendors/themify-icons/css/themify-icons.css'%}">
+    <link rel="stylesheet" href="{% static 'vendors/flag-icon-css/css/flag-icon.min.css'%}">
+    <link rel="stylesheet" href="{% static 'vendors/selectFX/css/cs-skin-elastic.css'%}">
+    <link rel="stylesheet" href="{%static 'vendors/jqvmap/dist/jqvmap.min.css'%}">
+
+
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+
+
+    <!-- Left Panel -->
+
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu"
+                    aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="./"><img src="{% static 'images/logo.png' %}" alt="Logo"></a>
+                <a class="navbar-brand hidden" href="./"><img src="{% static 'images/logo2.png'%}" alt="Logo"></a>
+            </div>
+
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="/"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </aside><!-- /#left-panel -->
+
+    <!-- Left Panel -->
+
+    <!-- Right Panel -->
+
+    <div id="right-panel" class="right-panel">
+
+        <!-- Header-->
+        <header id="header" class="header">
+
+            <div class="header-menu">
+
+                <div class="col-sm-7">
+                    <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+                    <div class="header-left">
+                        <button class="search-trigger"><i class="fa fa-search"></i></button>
+                      
+
+                        <div class="dropdown for-notification">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="notification"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-bell"></i>
+                                <span class="count bg-danger">5</span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="notification">
+                                <p class="red">You have 3 Notification</p>
+                                <a class="dropdown-item media bg-flat-color-1" href="#">
+                                    <i class="fa fa-check"></i>
+                                    <p>Server #1 overloaded.</p>
+                                </a>
+                                <a class="dropdown-item media bg-flat-color-4" href="#">
+                                    <i class="fa fa-info"></i>
+                                    <p>Server #2 overloaded.</p>
+                                </a>
+                                <a class="dropdown-item media bg-flat-color-5" href="#">
+                                    <i class="fa fa-warning"></i>
+                                    <p>Server #3 overloaded.</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown for-message">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="message"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="ti-email"></i>
+                                <span class="count bg-primary">9</span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="message">
+                                <p class="red">You have 4 Mails</p>
+                                <a class="dropdown-item media bg-flat-color-1" href="#">
+                                    <span class="photo media-left"><img alt="avatar"
+                                            src="{% static 'images/avatar/1.jpg'%}"></span>
+                                    <span class="message media-body">
+                                        <span class="name float-left">Jonathan Smith</span>
+                                        <span class="time float-right">Just now</span>
+                                        <p>Hello, this is an example msg</p>
+                                    </span>
+                                </a>
+                                <a class="dropdown-item media bg-flat-color-4" href="#">
+                                    <span class="photo media-left"><img alt="avatar"
+                                            src="{%static 'images/avatar/2.jpg'%}"></span>
+                                    <span class="message media-body">
+                                        <span class="name float-left">Jack Sanders</span>
+                                        <span class="time float-right">5 minutes ago</span>
+                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                    </span>
+                                </a>
+                                <a class="dropdown-item media bg-flat-color-5" href="#">
+                                    <span class="photo media-left"><img alt="avatar"
+                                            src="{% static 'images/avatar/3.jpg'%}"></span>
+                                    <span class="message media-body">
+                                        <span class="name float-left">Cheryl Wheeler</span>
+                                        <span class="time float-right">10 minutes ago</span>
+                                        <p>Hello, this is an example msg</p>
+                                    </span>
+                                </a>
+                                <a class="dropdown-item media bg-flat-color-3" href="#">
+                                    <span class="photo media-left"><img alt="avatar"
+                                            src="{% static 'images/avatar/4.jpg'%}"></span>
+                                    <span class="message media-body">
+                                        <span class="name float-left">Rachel Santos</span>
+                                        <span class="time float-right">15 minutes ago</span>
+                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="user-area dropdown float-right">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <img class="user-avatar rounded-circle" src="{% static 'images/admin.jpg'%}"
+                                alt="User Avatar">
+                        </a>
+
+                        <div class="user-menu dropdown-menu">
+                            <a class="nav-link" href="{%url 'login'%}"><i class="fa fa-user"></i> Account
+
+                            <a class="nav-link" href="#"><i class="fa fa-user"></i> Notifications <span
+                                    class="count">13</span></a>
+
+                            <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
+                            {% if user.is_authenticated %}
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="language-select dropdown" id="language-select">
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="language" aria-haspopup="true"
+                            aria-expanded="true">
+                            <i class="flag-icon flag-icon-us"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="language">
+                            <div class="dropdown-item">
+                                <span class="flag-icon flag-icon-fr"></span>
+                            </div>
+                            <div class="dropdown-item">
+                                <i class="flag-icon flag-icon-es"></i>
+                            </div>
+                            <div class="dropdown-item">
+                                <i class="flag-icon flag-icon-us"></i>
+                            </div>
+                            <div class="dropdown-item">
+                                <i class="flag-icon flag-icon-it"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </header><!-- /header -->
+        <!-- Header-->
+
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="content mt-3">
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="card text-white bg-flat-color-1">
+                    <div class="card-body pb-0">
+                        <div class="dropdown float-right">
+                            <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button"
+                                id="dropdownMenuButton1" data-toggle="dropdown">
+                                <i class="fa fa-cog"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <div class="dropdown-menu-content">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="mb-0">
+                            <span class="count">10468</span>
+                        </h4>
+                        <p class="text-light">Members online</p>
+
+                        <div class="chart-wrapper px-0" style="height:70px;" height="70">
+                            <canvas id="widgetChart1"></canvas>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!--/.col-->
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="card text-white bg-flat-color-2">
+                    <div class="card-body pb-0">
+                        <div class="dropdown float-right">
+                            <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button"
+                                id="dropdownMenuButton2" data-toggle="dropdown">
+                                <i class="fa fa-cog"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                <div class="dropdown-menu-content">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="mb-0">
+                            <span class="count">10468</span>
+                        </h4>
+                        <p class="text-light">Members online</p>
+
+                        <div class="chart-wrapper px-0" style="height:70px;" height="70">
+                            <canvas id="widgetChart2"></canvas>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--/.col-->
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="card text-white bg-flat-color-3">
+                    <div class="card-body pb-0">
+                        <div class="dropdown float-right">
+                            <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button"
+                                id="dropdownMenuButton3" data-toggle="dropdown">
+                                <i class="fa fa-cog"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                                <div class="dropdown-menu-content">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="mb-0">
+                            <span class="count">10468</span>
+                        </h4>
+                        <p class="text-light">Members online</p>
+
+                    </div>
+
+                    <div class="chart-wrapper px-0" style="height:70px;" height="70">
+                        <canvas id="widgetChart3"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!--/.col-->
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="card text-white bg-flat-color-4">
+                    <div class="card-body pb-0">
+                        <div class="dropdown float-right">
+                            <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button"
+                                id="dropdownMenuButton4" data-toggle="dropdown">
+                                <i class="fa fa-cog"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton4">
+                                <div class="dropdown-menu-content">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="mb-0">
+                            <span class="count">10468</span>
+                        </h4>
+                        <p class="text-light">Members online</p>
+
+                        <div class="chart-wrapper px-3" style="height:70px;" height="70">
+                            <canvas id="widgetChart4"></canvas>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--/.col-->
+
+
+
+
+    
+
+
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Select variable to see visualized data by Region</h5>
+
+                                <select class="chartType" class="form-select">
+                                    <option value="intensity">Intensity</option>
+                                    <option value="likelihood">Likelihood</option>
+                                    <option value="relevance">Relevance</option>
+
+
+                                </select>
+                            </div>
+                            <div class="card-body" style=" height: 500px;">
+                                <div class="chart" class="chart-container" style="width: 100%; height: 400px;"></div>
+                                <h4 class="text-center pt-2">Region</h4>
+                            </div>
+                            <div class="card-footer text-muted">
+                                Dynamic Data visualization using D3.js
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Select variable to see visualized data by Region</h5>
+
+                                <select class="chartType" class="form-select">
+                                    <option value="start_year">Year_start</option>
+                                    <option value="end_year">Year_end</option>
+
+
+
+                                </select>
+                            </div>
+                            <div class="card-body" style=" height: 500px;">
+                                <div class="chart" class="chart-container" style="width: 100%; height: 400px;"></div>
+                                <h4 class="text-center pt-2">Region</h4>
+                            </div>
+                            <div class="card-footer text-muted">
+                                Dynamic Data visualization using D3.js
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Select variable to see visualized data by Region</h5>
+
+                            <select class="chartType" class="form-select">
+
+                                <option value="country">Country</option>
+                                <option value="topic">Topics</option>
+                                <option value="region">Region</option>
+
+                            </select>
+                        </div>
+                        <div class="card-body" style=" height: 500px;">
+                            <div class="chart" class="chart-container" style="width: 100%; height: 400px;"></div>
+                            <h4 class="text-center pt-2">Region</h4>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Dynamic Data visualization using D3.js
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- data-tables -->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Data Table</strong>
+                    </div>
+                    <div class="card-body">
+
+                        <!-- Display Filtered Data -->
+                        <div class="container mt-5">
+                            <form class="search-form pb-3" method="get" action="{% url 'data-filteration-api' %}">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                 <input class="form-control" type="text" placeholder="Search..." name="search"  value="{{ search_query }}" id="searchQueryInput">
+                                    </div>
+                                  
+                                    <div class="col-md-4">
+                                        <input type="submit" value="Search" class="btn btn-primary">
+                                    </div>
+                                </div>
+                            </form>
+                        <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>End Year</th>
+                                        <th>Topic</th>
+                                        <th>Sector</th>
+                                        <th>Region</th>
+                                        <th>PEST</th>
+                                        <th>Source</th>
+                                        <th>Country</th>
+                                    </tr>
+                                </thead>
+                                {% if data %}
+                                <tbody id="dataTable">
+                                    {% for item in data %}
+                                    <tr>
+                                        <td class="highlight">{{ item.end_year }}</td>
+                                        <td class="highlight">{{ item.topic }}</td>
+                                        <td class="highlight">{{ item.sector }}</td>
+                                        <td class="highlight">{{ item.region }}</td>
+                                        <td class="highlight">{{ item.pestle }}</td>
+                                        <td class="highlight">{{ item.source }}</td>
+                                        <td class="highlight">{{ item.country }}</td>
+                        
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                {% else %}
+                                <tbody>
+                                    <tr>
+                                        <td colspan="7" class="text-center text-danger">No data available for the selected filters.</td>
+                                    </tr>
+                                </tbody>
+                                {% endif %}
+                            </table>
+                            
+                            <!-- Pagination Controls -->
+                            <div class="mt-4">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-center">
+                                        {% if previous %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ previous }}">Previous</a>
+                                        </li>
+                                        {% endif %}
+                                        <li class="page-item disabled">
+                                            <span class="page-link">Page {{ data.number }} of {{ data.paginator.num_pages }}</span>
+                                        </li>
+                                        {% if next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ next }}">Next</a>
+                                        </li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            </div>
+                            
+                          
+               <!-- this script will generate the following data that are search on text search results          -->
+
+
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                                console.log("Script is loaded and DOM is ready.");  // Add this to confirm the script is working
+                        
+                                const searchQuery = document.getElementById('searchQueryInput').value.toLowerCase();
+                                console.log("Search Query: ", searchQuery);  // Check if the search query is being retrieved
+                        
+                                if (searchQuery) {
+                                    // Get all table cells with the class 'highlight'
+                                    const tableCells = document.querySelectorAll('#dataTable .highlight');
+                                    console.log("Found table cells: ", tableCells.length);  // Check how many cells are being selected
+                                    
+                                    tableCells.forEach(cell => {
+                                        const cellText = cell.textContent.toLowerCase();
+                                        if (cellText.includes(searchQuery)) {
+                                            // Highlight the matching part of the text
+                                            const regex = new RegExp(`(${searchQuery})`, 'gi');
+                                            cell.innerHTML = cell.textContent.replace(regex, '<span style="background-color: yellow;">$1</span>');
+                                            console.log("Highlighted cell text: ", cell.innerHTML);  // Check if the cell text is updated
+                                        }
+                                    });
+                                }
+                            });
+                        </script>
+                        
+                     <!-- This script is used for showing charts for data visualization purposes    -->
+
+                        <script>
+                            // Function to fetch and update the chart (bar or line based on the chart type)
+                            function fetchAndUpdateChart(chartType, chartElement) {
+                                fetch(`/api/data-visualization/?type=${chartType}&searching=${document.querySelector('.search-form input[name="search"]').value}`)
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        // Clear previous chart
+                                        d3.select(chartElement).selectAll("*").remove();
+
+                                        // Setup SVG and dimensions
+                                        const margin = { top: 30, right: 30, bottom: 70, left: 60 };
+                                        const width = chartElement.offsetWidth - margin.left - margin.right;
+                                        const height = 400 - margin.top - margin.bottom;
+
+                                        const svg = d3.select(chartElement)
+                                            .append("svg")
+                                            .attr("width", width + margin.left + margin.right)
+                                            .attr("height", height + margin.top + margin.bottom)
+                                            .append("g")
+                                            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+                                        // X axis: Regions (always categorical)
+                                        const x = d3.scaleBand()
+                                            .domain(data.data.map(d => d.region))
+                                            .range([0, width])
+                                            .padding(0.1);
+
+                                        svg.append("g")
+                                            .attr("transform", `translate(0,${height})`)
+                                            .call(d3.axisBottom(x))
+                                            .selectAll("text")
+                                            .attr("transform", "translate(-10,0)rotate(-45)")
+                                            .style("text-anchor", "end");
+
+                                        // Y axis: Check if field is numerical or categorical
+                                        let y;
+                                        if (data.field_type === 'numerical') {
+                                            y = d3.scaleLinear()
+                                                .domain([0, d3.max(data.data, d => d.selected_value)])
+                                                .range([height, 0]);
+                                        } else {
+                                            y = d3.scaleBand()
+                                                .domain(data.data.map(d => d.selected_value))
+                                                .range([height, 0])
+                                                .padding(0.1);
+                                        }
+
+                                        svg.append("g")
+                                            .call(d3.axisLeft(y));
+
+                                        // Create a tooltip element
+                                        const tooltip = d3.select("body").append("div")
+                                            .attr("class", "tooltip")
+                                            .style("position", "absolute")
+                                            .style("background", "#f9f9f9")
+                                            .style("padding", "5px")
+                                            .style("border", "1px solid #ccc")
+                                            .style("border-radius", "4px")
+                                            .style("opacity", 0)
+                                            .style("pointer-events", "none");
+
+                                        // Check if chart type is 'country', 'region', or 'topic' for line chart
+                                        if (['country', 'region', 'topic'].includes(chartType)) {
+                                            // Create a line chart for 'country', 'region', or 'topic'
+                                            const line = d3.line()
+                                                .x(d => x(d.region) + x.bandwidth() / 2) // Center the line on the x-axis band
+                                                .y(d => y(d.selected_value));
+
+                                            // Append the path for the line chart
+                                            svg.append("path")
+                                                .datum(data.data)
+                                                .attr("fill", "none")
+                                                .attr("stroke", "steelblue")
+                                                .attr("stroke-width", 1.2)
+                                                .attr("d", line);
+
+                                            // Add circles for each data point in the line chart
+                                            svg.selectAll(".dot")
+                                                .data(data.data)
+                                                .enter()
+                                                .append("circle")
+                                                .attr("class", "dot")
+                                                .attr("cx", d => x(d.region) + x.bandwidth() / 2)
+                                                .attr("cy", d => y(d.selected_value))
+                                                .attr("r", 5)
+                                                .attr("fill", "orange")
+                                                .on("mouseover", function (event, d) {
+                                                    d3.select(this).attr("r", 7).style("fill", "red");
+                                                    tooltip.transition().duration(200).style("opacity", .9);
+                                                    tooltip.html(`Region: ${d.region}<br>Value: ${d.selected_value}`)
+                                                        .style("left", (event.pageX + 5) + "px")
+                                                        .style("top", (event.pageY - 28) + "px");
+                                                })
+                                                .on("mouseout", function (event, d) {
+                                                    d3.select(this).attr("r", 5).style("fill", "orange");
+                                                    tooltip.transition().duration(500).style("opacity", 0);
+                                                });
+                                        } else {
+                                            // Create a bar chart for all other fields
+                                            svg.selectAll(".bar")
+                                                .data(data.data)
+                                                .enter()
+                                                .append("rect")
+                                                .attr("class", "bar")
+                                                .attr("x", d => x(d.region))
+                                                .attr("y", d => y(d.selected_value))
+                                                .attr("width", x.bandwidth())
+                                                .attr("height", d => height - y(d.selected_value))
+                                                .on("mouseover", function (event, d) {
+                                                    d3.select(this).style("fill", "orange");
+                                                })
+                                                .on("mouseout", function (event, d) {
+                                                    d3.select(this).style("fill", "steelblue");
+                                                });
+                                        }
+
+                                        // Add Y-axis Label (Dynamic based on field type)
+                                        svg.append("text")
+                                            .attr("class", "axis-label")
+                                            .attr("x", -height / 2)
+                                            .attr("y", -margin.left + 20)
+                                            .attr("transform", "rotate(-90)")
+                                            .style("text-anchor", "middle")
+                                            .text(chartType.charAt(0).toUpperCase() + chartType.slice(1));
+
+                                    })
+                                    .catch(error => console.error('Error fetching data:', error));
+                            }
+
+                            // Fetch and display the default charts on page load
+                            document.addEventListener("DOMContentLoaded", function () {
+                                const charts = document.querySelectorAll('.chart');
+                                charts.forEach((chart, index) => {
+                                    const select = chart.closest('.card').querySelector('.chartType');
+                                    fetchAndUpdateChart(select.value, chart);
+                                });
+                            });
+
+                            // Update chart when any dropdown changes
+                            document.querySelectorAll('.chartType').forEach((select) => {
+                                select.addEventListener('change', function () {
+                                    const chart = this.closest('.card').querySelector('.chart');
+                                    fetchAndUpdateChart(this.value, chart);
+                                });
+                            });
+                        </script>
+                    </div> <!-- .content -->
+                </div>
+
+
+                <!-- Right Panel -->
+                <!-- <script src="{% static 'assets/js/dataTables.min.js'%}"></script> -->
+                <script src="{% static 'vendors/jquery/dist/jquery.min.js'%}"></script>
+                <script src="{% static 'vendors/popper.js/dist/umd/popper.min.js'%}"></script>
+                <script src="{% static 'vendors/bootstrap/dist/js/bootstrap.min.js'%}"></script>
+                <script src="{% static 'assets/js/main.js'%}"></script>
+                <script src="{% static 'vendors/chart.js/dist/Chart.bundle.min.js'%}"></script>
+                <script src="{% static 'assets/js/dashboard.js'%}"></script>
+                <script src="{% static 'assets/js/widgets.js'%}"></script>
+                <script src="{% static 'vendors/jqvmap/dist/jquery.vmap.min.js'%}"></script>
+                <script src="{% static 'vendors/jqvmap/examples/js/jquery.vmap.sampledata.js'%}"></script>
+                <script src="{% static 'vendors/jqvmap/dist/maps/jquery.vmap.world.js'%}"></script>
+
+
+</body>
+
+</html>
