@@ -8,6 +8,7 @@ This project is a Data Visualization Dashboard that provides insights using inte
 
 
 **Tech Stack**
+
 Backend: Django
 
 Frontend: JavaScript, Bootstrap
@@ -17,11 +18,13 @@ Database: MySQL
 
 
 **Visualization Library:**
+
 D3.js 
 
 
 
 **Features**
+
 ✅ Data Processing:
 Convert the provided JSON (jsondata.json) into a MySQL database.
 Create Django API endpoints to retrieve data from the database.
