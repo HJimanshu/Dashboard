@@ -9,8 +9,11 @@ This project is a Data Visualization Dashboard that provides insights using inte
 
 **Tech Stack**
 Backend: Django
+
 Frontend: JavaScript, Bootstrap
+
 Database: MySQL
+
 
 
 **Visualization Library:**
